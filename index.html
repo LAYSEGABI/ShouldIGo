@@ -1,247 +1,767 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Should I Go? | Sua Jornada, Sua Liberdade, Nossa Proteção.</title>
-    <meta name="description" content="A primeira plataforma de viagens pensada para a segurança feminina. Explore o mundo com roteiros validados, avaliações reais e uma comunidade que te protege.">
+    <title>Should I Go - Viaje com Segurança</title>
     
-    <!-- Chosen Palette: Empowerment Amber -->
-    <!-- Application Structure Plan: A linear, storytelling landing page designed to guide the user from a compelling value proposition (Hero) through tangible benefits (Features) and emotional connection (Community) to a single, clear call-to-action (Form). This structure is optimized for conversion by building interest and trust sequentially, leading the user naturally to the goal of signing up. -->
-    <!-- Visualization & Content Choices: Report Info: Core platform features -> Goal: Inform & Organize -> Presentation: Card-based grid -> Interaction: Hover effects -> Justification: Breaks down complex features into easily digestible, visually appealing chunks, improving clarity and user engagement. Report Info: Community aspect -> Goal: Build Trust -> Presentation: Testimonial + Image layout -> Interaction: None -> Justification: Uses social proof and imagery to create an emotional connection, which is more effective than an interactive element for this goal. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- Favicon Placeholder -->
+    <link rel="icon" href="https://placehold.co/32x32/FF9F31/182835?text=S" type="image/png">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Nunito:wght@300;400&display=swap" rel="stylesheet">
+    <!-- CSS -->
     <style>
+        /* Importação da fonte Montserrat do Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        /* Definição das variáveis de cor e reset básico */
+        :root {
+            --bg-main: #FFFFFF;
+            --primary-blue: #182835;
+            --text-blue: #26567D;
+            --highlight-orange: #FF9F31;
+            --soft-gray: #5a646d;
+
+            --scroll-padding: 80px; /* Altura do header para ajuste da âncora */
+        }
+
+        /* Reset e Estilos Globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--scroll-padding);
+        }
+
         body {
-            background-color: #FFFFFE;
-            color: #182835;
-            font-family: 'Nunito', sans-serif;
-        }
-        h1, h2, h3 {
             font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--primary-blue);
+            line-height: 1.6;
         }
-        .cta-button {
-            background-color: #FF9F31;
-            color: #182835;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .cta-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--text-blue);
         }
-        .nav-link {
-            position: relative;
+        
+        h1 { font-size: 2.5rem; line-height: 1.2; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+        p { font-size: 1rem; color: var(--soft-gray); }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--highlight-orange);
+            color: var(--bg-main);
+        }
+
+        .btn-primary:hover {
+            background-color: #ffb25a;
+            transform: translateY(-2px);
+        }
+        
+        /* Animação de Fade-in */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Cabeçalho (Header) --- */
+        .main-header {
+            background-color: var(--bg-main);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            height: var(--scroll-padding);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-blue);
+            text-decoration: none;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-blue);
+            font-weight: 700;
             transition: color 0.3s ease;
-            color: #182835;
         }
-        .nav-link:hover {
-            color: #FF9F31;
+
+        .main-nav a:hover {
+            color: var(--highlight-orange);
         }
-        .nav-link::after {
-            content: '';
+        
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-blue);
+        }
+
+
+        /* --- Seção Hero --- */
+        .hero {
+            background-image: linear-gradient(rgba(24, 40, 53, 0.6), rgba(24, 40, 53, 0.6)), url('https://images.pexels.com/photos/1004665/pexels-photo-1004665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center center;
+            color: var(--bg-main);
+            padding-top: calc(var(--scroll-padding) + 100px);
+            padding-bottom: 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: var(--bg-main);
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        .hero h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero .btn {
+            font-size: 1.1rem;
+            padding: 15px 40px;
+        }
+
+        /* --- Seção Problema --- */
+        #problema { text-align: center; }
+        #problema .section-title { margin-bottom: 60px; }
+        #problema .section-title h2 { margin-bottom: 15px; }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            text-align: left;
+        }
+
+        .problem-card {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid var(--highlight-orange);
+        }
+
+        .problem-card i {
+            font-size: 2.5rem;
+            color: var(--highlight-orange);
+            margin-bottom: 15px;
+        }
+
+        .problem-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* --- Seção Solução (Funcionalidades) --- */
+        #solucao { text-align: center; }
+        #solucao .section-title { margin-bottom: 40px; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .feature-card {
+            background-color: var(--bg-main);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            text-align: left;
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .feature-card.premium {
+            border-color: var(--highlight-orange);
+        }
+        
+        .premium-badge {
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #FF9F31;
-            transition: width 0.3s ease;
+            background-color: var(--highlight-orange);
+            color: var(--bg-main);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
         }
-        .nav-link:hover::after {
+
+        .feature-card h3 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .premium-includes {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--soft-gray);
+            margin-bottom: 30px;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: flex-start; /* Alinha o ícone com o topo do texto */
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list i {
+            font-size: 1.8rem;
+            color: var(--highlight-orange);
+            margin-top: 4px; /* Ajuste fino vertical do ícone */
+        }
+        
+        .feature-text h4 {
+            color: var(--text-blue);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .feature-text p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* --- Seção Inscrição --- */
+        #inscricao {
+            background-color: var(--text-blue);
+            color: var(--bg-main);
+            text-align: center;
+        }
+
+        #inscricao h2, #inscricao p {
+            color: var(--bg-main);
+        }
+        
+        #inscricao h2 { margin-bottom: 15px; }
+        #inscricao p { max-width: 600px; margin: 0 auto 40px; }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-control {
             width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid var(--bg-main);
+            background-color: transparent;
+            color: var(--bg-main);
+            font-size: 1rem;
         }
-        .header-scrolled {
-            background-color: rgba(255, 255, 254, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .btn-payment {
+            background-color: var(--highlight-orange);
+            color: var(--primary-blue);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .trust-text {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* --- Seção Futuro --- */
+        #futuro { text-align: center; }
+        #futuro .container { max-width: 800px; }
+        #futuro h2 { margin-bottom: 20px; }
+
+        /* --- Rodapé (Footer) --- */
+        .main-footer {
+            background-color: var(--primary-blue);
+            color: var(--bg-main);
+            padding: 40px 0;
+        }
+        
+        .main-footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-links ul, .social-media ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--bg-main);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .social-media a {
+            color: var(--highlight-orange);
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .social-media a:hover {
+            transform: scale(1.1);
+        }
+        
+        .copyright {
+            text-align: center;
+            width: 100%;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* --- Responsividade (Mobile-First) --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            
+            .menu-toggle {
+                display: block;
+                z-index: 1001;
+            }
+
+            .main-nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--primary-blue);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.4s ease-in-out;
+            }
+            
+            .main-nav.active {
+                right: 0;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .main-nav a {
+                color: var(--bg-main);
+                font-size: 1.2rem;
+            }
+            
+            .main-header .btn-primary {
+                display: none; /* Esconde o botão no header em telas pequenas */
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group {
+                flex-direction: column;
+            }
+
+            .main-footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
-</head>
-<body class="antialiased">
 
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold" style="color: #26567D;">
-                Should I <span style="color: #FF9F31;">GO?</span>
-            </a>
-            <nav class="hidden md:flex items-center space-x-8">
-                <a  href="#features" class="nav-link text-lg">Funcionalidades</a>
-                <a href="#community" class="nav-link text-lg">Comunidade</a>
-                <a href="#join-us" class="nav-link text-lg">Participe</a>
+    <!-- Biblioteca de Ícones (Phosphor Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+    <!-- ======================= Cabeçalho ======================= -->
+    <header class="main-header" id="header">
+        <div class="container">
+            <a href="#" class="logo">Should I Go</a>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="#problema">O Problema</a></li>
+                    <li><a href="#solucao">Nossa Solução</a></li>
+                    <li><a href="#inscricao">Preços</a></li>
+                </ul>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-2xl">
-                ☰
-            </button>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur-lg">
-            <a href="#features" class="block text-center py-3 px-6 text-lg">Funcionalidades</a>
-            <a href="#community" class="block text-center py-3 px-6 text-lg">Comunidade</a>
-            <a href="#join-us" class="block text-center py-3 px-6 text-lg">Participe</a>
+            <a href="#inscricao" class="btn btn-primary">Lista de espera</a>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="ph ph-list"></i>
+            </div>
         </div>
     </header>
 
     <main>
-        <section id="hero" class="min-h-screen flex items-center bg-cover bg-center pt-20" style="background-image: url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=2070&auto=format&fit=crop&ixlib-rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-            <div class="absolute inset-0 bg-black/40"></div>
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4">Sua Jornada, Sua Liberdade, Nossa Proteção.</h1>
-                <p class="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-8">A plataforma de viagens que conecta e protege mulheres ao redor do mundo. Explore destinos com a segurança e a confiança que você merece.</p>
-                <a href="#join-us" class="cta-button inline-block text-lg font-bold py-4 px-10 rounded-full">
-                    Quero viajar segura!
-                </a>
+        <!-- ======================= Seção Hero ======================= -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <h1>Sua liberdade de viajar pelo mundo, com a segurança que você merece.</h1>
+                <h2>Should I Go é a primeira plataforma de planejamento de viagens que coloca a segurança feminina em primeiro lugar. De mapas de risco em tempo real a roteiros personalizados, viaje com a confiança que sempre sonhou.</h2>
+                <a href="#inscricao" class="btn btn-primary">Quero viajar com segurança</a>
             </div>
         </section>
 
-        <section id="features" class="py-20 md:py-32">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Planeje cada passo com tranquilidade</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Nossas ferramentas foram desenhadas para eliminar a insegurança do seu planejamento de viagem.</p>
+        <!-- ======================= Seção Problema ======================= -->
+        <section id="problema" class="fade-in-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Viajar deveria ser sobre liberdade, não sobre medo.</h2>
+                    <p>A ausência de informações seguras restringe a liberdade das mulheres viajantes. Quantas vezes você já deixou de explorar um lugar por não saber se era seguro? Ou se sentiu insegura por não conhecer o ambiente?</p>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="feature-card bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 text-center">
-                        <div class="flex justify-center items-center mb-6 w-16 h-16 mx-auto rounded-full" style="background-color: #FFC750;">
-                            <div class="w-8 h-8 flex items-center justify-center text-2xl">🗺️</div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3" style="color: #26567D;">Roteiros Validados</h3>
-                        <p class="text-gray-600">Acesse roteiros criados e testados por outras viajantes, com dicas de segurança e locais que realmente valem a pena.</p>
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <i class="ph-fill ph-moon-stars"></i>
+                        <h3>Medo de sair à noite</h3>
+                        <p>Insegurança ao caminhar sozinha em locais pouco movimentados ou desconhecidos.</p>
                     </div>
-                    <div class="feature-card bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 text-center">
-                        <div class="flex justify-center items-center mb-6 w-16 h-16 mx-auto rounded-full" style="background-color: #FFC750;">
-                             <div class="w-8 h-8 flex items-center justify-center text-2xl">🛡️</div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3" style="color: #26567D;">Avaliações que Protegem</h3>
-                        <p class="text-gray-600">Saiba onde você é bem-vinda. Veja avaliações de hotéis e passeios sob a ótica da segurança feminina.</p>
+                    <div class="problem-card">
+                        <i class="ph-fill ph-translate"></i>
+                        <h3>Barreiras de comunicação</h3>
+                        <p>Dificuldade em se comunicar em outro idioma e pedir ajuda.</p>
                     </div>
-                    <div class="feature-card bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 text-center">
-                        <div class="flex justify-center items-center mb-6 w-16 h-16 mx-auto rounded-full" style="background-color: #FFC750;">
-                             <div class="w-8 h-8 flex items-center justify-center text-2xl">🤝</div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3" style="color: #26567D;">Comunidade Ativa</h3>
-                        <p class="text-gray-600">Encontre sua companhia de viagem. Conecte-se, combine passeios e compartilhe experiências com outras mulheres.</p>
+                    <div class="problem-card">
+                        <i class="ph-fill ph-map-pin-line"></i>
+                        <h3>Incerteza sobre locais</h3>
+                        <p>Não saber se um bairro, rua ou transporte é seguro antes de ir.</p>
                     </div>
-                    <div class="feature-card bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 text-center">
-                        <div class="flex justify-center items-center mb-6 w-16 h-16 mx-auto rounded-full" style="background-color: #FFC750;">
-                             <div class="w-8 h-8 flex items-center justify-center text-2xl">✨</div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3" style="color: #26567D;">IA Personalizada</h3>
-                        <p class="text-gray-600">Nossa IA entende seu perfil e sugere os destinos e experiências que mais combinam com você.</p>
+                    <div class="problem-card">
+                        <i class="ph-fill ph-shield-warning"></i>
+                        <h3>Risco de assédio</h3>
+                        <p>Preocupação constante com assédio e situações de vulnerabilidade.</p>
+                    </div>
+                    <div class="problem-card">
+                        <i class="ph-fill ph-house-line"></i>
+                        <h3>Hospedagem sem confiança</h3>
+                        <p>Ansiedade ao escolher onde ficar, sem garantia real de segurança.</p>
+                    </div>
+                    <div class="problem-card">
+                        <i class="ph-fill ph-person-arms-spread"></i>
+                        <h3>Golpes e furtos</h3>
+                        <p>Maior vulnerabilidade a fraudes, furtos e abordagens de golpistas.</p>
+                    </div>
+                     <div class="problem-card">
+                        <i class="ph-fill ph-globe-hemisphere-west"></i>
+                        <h3>Diferenças culturais</h3>
+                        <p>Medo de desrespeitar normas locais e sofrer discriminação.</p>
+                    </div>
+                     <div class="problem-card">
+                        <i class="ph-fill ph-first-aid-kit"></i>
+                        <h3>Acesso à saúde</h3>
+                        <p>Incerteza sobre hospitais, clínicas ou farmácias em caso de emergência.</p>
+                    </div>
+                     <div class="problem-card">
+                        <i class="ph-fill ph-user-circle-minus"></i>
+                        <h3>Solidão e isolamento</h3>
+                        <p>Falta de apoio ou rede de confiança durante a viagem.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="community" class="py-20 md:py-32" style="background-color: #f7f9fc;">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/2">
-                        <img src="https://plus.unsplash.com/premium_photo-1675626488167-2edf45e768c5?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mulheres viajando juntas e sorrindo" class="rounded-xl shadow-2xl w-full h-auto object-cover">
+        <!-- ======================= Seção Solução ======================= -->
+        <section id="solucao" class="fade-in-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>A plataforma completa para a sua jornada.</h2>
+                </div>
+
+                <div class="features-grid">
+                    <!-- Card Free -->
+                    <div class="feature-card">
+                        <h3>Funcionalidades Free</h3>
+                        <ul class="features-list">
+                            <li>
+                                <i class="ph-fill ph-map-trifold"></i>
+                                <div class="feature-text">
+                                    <h4>Mapa colaborativo</h4>
+                                    <p>Avalie e deixe comentários sobre os lugares visitados.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-fill ph-path"></i>
+                                <div class="feature-text">
+                                    <h4>Itinerários prontos</h4>
+                                    <p>Sugestões de roteiros curtos para otimizar o tempo da viagem.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-fill ph-book-open-text"></i>
+                                <div class="feature-text">
+                                    <h4>Conteúdos educativos</h4>
+                                    <p>Informações culturais, dicas de segurança e guias rápidos do local.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-fill ph-siren"></i>
+                                <div class="feature-text">
+                                    <h4>Botão de pânico avançado</h4>
+                                    <p>Recurso de segurança para acionar contatos ou autoridades.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-fill ph-microphone"></i>
+                                <div class="feature-text">
+                                    <h4>Tradução em tempo real</h4>
+                                    <p>Ferramenta para facilitar a comunicação em diferentes idiomas.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-fill ph-handshake"></i>
+                                <div class="feature-text">
+                                    <h4>Parcerias de viagem</h4>
+                                    <p>Descontos exclusivos com agências de turismo parceiras.</p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="md:w-1/2 text-center md:text-left">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Você nunca está sozinha</h2>
-                        <p class="text-lg text-gray-600 mb-8">Faça parte de uma rede global de mulheres que se apoiam. Troque dicas, encontre apoio e faça amizades que duram para sempre.</p>
-                        <div class="bg-white p-6 rounded-lg shadow-lg border-l-4" style="border-color: #FF9F31;">
-                            <p class="text-gray-700 italic">"A melhor parte foi conhecer outras mulheres com a mesma paixão por explorar o mundo. Me senti segura e acolhida em todos os momentos."</p>
-                            <p class="text-right font-bold mt-4" style="color: #26567D;">- Ana, Viajante Solo</p>
-                        </div>
+                    <!-- Card Premium -->
+                    <div class="feature-card premium">
+                         <div class="premium-badge">Lista de Espera</div>
+                         <h3>Funcionalidades Premium</h3>
+                         <p class="premium-includes">Inclui tudo do plano Free e mais:</p>
+                         <ul class="features-list">
+                            <li>
+                                <i class="ph-fill ph-gps-fix"></i>
+                                <div class="feature-text">
+                                    <h4>Mapa com GPS ativo 24h</h4>
+                                    <p>Rastreamento em tempo real para maior segurança.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-fill ph-magic-wand"></i>
+                                <div class="feature-text">
+                                    <h4>Roteiro personalizado com IA</h4>
+                                    <p>Sugestões inteligentes adaptadas ao perfil da viajante.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-fill ph-star"></i>
+                                <div class="feature-text">
+                                    <h4>Conteúdos exclusivos</h4>
+                                    <p>Guias, checklists e e-books para aprofundar a experiência.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-fill ph-robot"></i>
+                                <div class="feature-text">
+                                    <h4>IA de risco</h4>
+                                    <p>Inteligência que analisa regiões e alerta sobre possíveis perigos.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-fill ph-google-logo"></i>
+                                <div class="feature-text">
+                                    <h4>Integração futura</h4>
+                                    <p>API que conecta diretamente com o Google Maps para otimizar rotas e alertas.</p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
         
-        <section id="join-us" class="py-20 md:py-32 text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-             <div class="absolute inset-0 bg-black/50"></div>
-             <div class="container mx-auto px-6 relative z-10">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">O mundo te espera. Vamos juntas?</h2>
-                <p class="text-lg text-white/90 max-w-3xl mx-auto mb-10">Seja a primeira a saber do lançamento da 'Should I Go?'. Inscreva-se e receba um guia exclusivo com dicas de segurança para sua próxima viagem.</p>
-                <div id="form-container" class="max-w-xl mx-auto">
-                    <form id="waitlist-form" name="waitlist" method="POST" netlify netlify-honeypot="bot-field" class="flex flex-col md:flex-row gap-4">
-                        <input type="hidden" name="form-name" value="waitlist" />
-                        <p class="hidden">
-                            <label>Não preencha isso se você for humano: <input name="bot-field" /></label>
-                        </p>
-                        <div class="w-full">
-                            <label for="name" class="sr-only">Seu nome</label>
-                            <input type="text" id="name" name="name" placeholder="Seu nome" required class="w-full px-5 py-4 rounded-full text-lg text-gray-800 focus:outline-none focus:ring-4 focus:ring-opacity-50" style="--tw-ring-color: #FFC750;">
-                        </div>
-                        <div class="w-full">
-                            <label for="email" class="sr-only">Seu melhor email</label>
-                            <input type="email" id="email" name="email" placeholder="Seu melhor email" required class="w-full px-5 py-4 rounded-full text-lg text-gray-800 focus:outline-none focus:ring-4 focus:ring-opacity-50" style="--tw-ring-color: #FFC750;">
-                        </div>
-                        <button type="submit" class="cta-button w-full md:w-auto text-lg font-bold py-4 px-8 rounded-full whitespace-nowrap">Entrar na lista!</button>
-                    </form>
-                </div>
-                <div id="success-message" class="hidden max-w-xl mx-auto bg-white/90 p-8 rounded-xl shadow-lg">
-                    <h3 class="text-2xl font-bold mb-3" style="color: #26567D;">Pronto! Inscrição confirmada!</h3>
-                    <p class="text-lg text-gray-800">Enviamos uma confirmação para o seu email. Estamos ansiosas para viajar com você!</p>
+        <!-- ======================= Seção Inscrição ======================= -->
+        <section id="inscricao" class="fade-in-section">
+            <div class="container">
+                <h2>Seja uma das primeiras a viajar com a Should I Go.</h2>
+                <p>Entre para a nossa lista de espera paga e garanta acesso exclusivo no lançamento, além de um desconto especial de fundadora.</p>
+                 <!-- Formulário atualizado para Netlify -->
+                <form name="contato" method="POST" data-netlify="true" class="signup-form">
+                    <div class="form-group">
+                        <input type="text" name="nome" class="form-control" placeholder="Seu nome" required>
+                        <input type="tel" name="whatsapp" class="form-control" placeholder="Seu Whatsapp" required>
+                    </div>
+                    <button type="submit" class="btn btn-payment">Garantir meu lugar com 50% de desconto por R$7,90</button>
+                </form>
+                <div class="trust-text">
+                    <p>Pagamento seguro. Você será cobrada apenas uma vez. Vagas limitadas.</p>
                 </div>
             </div>
         </section>
+
+        <!-- ======================= Seção Futuro ======================= -->
+        <section id="futuro" class="fade-in-section">
+            <div class="container">
+                 <h2>O futuro das suas viagens.</h2>
+                 <p>Estamos em constante evolução. Em breve, nossa API se conectará diretamente ao Google Maps para uma experiência ainda mais integrada e segura. Junte-se a nós e faça parte desta revolução.</p>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="py-10" style="background-color: #182835;">
-        <div class="container mx-auto px-6 text-center text-white/80">
-            <p class="text-2xl font-bold mb-4">
-                Should I <span style="color: #FF9F31;">GO?</span>
-            </p>
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" class="text-lg hover:text-white transition-colors">Instagram</a>
-                <a href="#" class="text-lg hover:text-white transition-colors">TikTok</a>
+    <!-- ======================= Rodapé ======================= -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Termos de Serviço</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
             </div>
-            <p>&copy; 2025 Should I Go? | Todos os direitos reservados.</p>
+            <div class="social-media">
+                <ul>
+                    <li><a href="#" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a></li>
+                    <li><a href="#" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo"></i></a></li>
+                    <li><a href="#" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Should I Go. Todos os direitos reservados.</p>
+            </div>
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const header = document.getElementById('main-header');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const waitlistForm = document.getElementById('waitlist-form');
-            const formContainer = document.getElementById('form-container');
-            const successMessage = document.getElementById('success-message');
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('header-scrolled');
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Animação de Fade-in ao Rolar ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // --- Menu Hambúrguer para Mobile ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+            const navLinks = mainNav.querySelectorAll('a');
+
+            menuToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+                // Alterna o ícone entre menu e 'X'
+                const icon = menuToggle.querySelector('i');
+                if (icon.classList.contains('ph-list')) {
+                    icon.classList.remove('ph-list');
+                    icon.classList.add('ph-x');
                 } else {
-                    header.classList.remove('header-scrolled');
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
                 }
             });
 
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
+            // Fecha o menu ao clicar em um link
+            navLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('ph-x');
+                        icon.classList.add('ph-list');
+                    }
                 });
-            });
-
-            waitlistForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                const myForm = e.target;
-                const formData = new FormData(myForm);
-                
-                fetch("/", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: new URLSearchParams(formData).toString()
-                })
-                .then(() => {
-                    formContainer.classList.add('hidden');
-                    successMessage.classList.remove('hidden');
-                })
-                .catch((error) => alert(error));
             });
         });
     </script>
+
 </body>
 </html>
