@@ -114,10 +114,12 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-blue);
             text-decoration: none;
+        }
+        
+        .logo img {
+            height: 50px; /* Altura do logo */
+            width: auto;
         }
 
         .main-nav ul {
@@ -147,7 +149,7 @@
 
         /* --- Seção Hero --- */
         .hero {
-            background-image: linear-gradient(rgba(24, 40, 53, 0.6), rgba(24, 40, 53, 0.6)), url('https://images.pexels.com/photos/1004665/pexels-photo-1004665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-image: linear-gradient(rgba(24, 40, 53, 0.6), rgba(24, 40, 53, 0.6)), url('back.png');
             background-size: cover;
             background-position: center center;
             color: var(--bg-main);
@@ -347,10 +349,15 @@
         }
 
         /* --- Seção Futuro --- */
-        #futuro { text-align: center; }
+      #futuro { text-align: center; }
         #futuro .container { max-width: 800px; }
+        #futuro .section-logo {
+            display: block;
+            margin: 0 auto 30px;
+            height: 50px;
+            width: auto;
+        }
         #futuro h2 { margin-bottom: 20px; }
-
         /* --- Rodapé (Footer) --- */
         .main-footer {
             background-color: var(--primary-blue);
@@ -468,7 +475,9 @@
     <!-- ======================= Cabeçalho ======================= -->
     <header class="main-header" id="header">
         <div class="container">
-            <a href="#" class="logo">Should I Go</a>
+            <a href="#" class="logo">
+                <img src="logo.svg" alt="Should I Go Logo">
+            </a>
             <nav class="main-nav" id="main-nav">
                 <ul>
                     <li><a href="#problema">O Problema</a></li>
@@ -675,6 +684,7 @@
         <!-- ======================= Seção Futuro ======================= -->
         <section id="futuro" class="fade-in-section">
             <div class="container">
+                <img src="logo.svg" alt="Should I Go Logo" class="section-logo">
                  <h2>O futuro das suas viagens.</h2>
                  <p>Estamos em constante evolução. Em breve, nossa API se conectará diretamente ao Google Maps para uma experiência ainda mais integrada e segura. Junte-se a nós e faça parte desta revolução.</p>
             </div>
